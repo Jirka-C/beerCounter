@@ -1,0 +1,76 @@
+.userBeers{
+  margin: 2rem 0;
+
+  &__row{
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    border: 1px solid $primary;
+  }
+
+  &__name{
+    display: flex;
+    align-items: center;
+    background: $primary;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    color: white;
+    min-width: 150px;
+    font-weight: 500;
+  }
+
+  &__beers{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+    padding: 5px;
+  }
+
+  &__beer{
+    width: 20px;
+
+    &-separator{
+      display: flex;
+      width: 8px;
+    }
+  }
+
+  &__counter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 5px;
+    margin-left: auto;
+    min-width: 110px;
+
+    &--disable{
+      opacity: 0.2;
+    }
+  }
+
+  &__count{
+    font-size: 1.4rem;
+    font-weight: 5px;
+    padding: 10px;
+  }
+
+  &__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $primary;
+    color: white;
+    height: 30px;
+    width: 30px;
+    font-size: 2rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover{
+      background: darken($color: $primary, $amount: 10%);
+    }
+  }
+}
