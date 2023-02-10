@@ -32,7 +32,7 @@ function UsersList() {
 
   const saveBeers = (userId, beerCount) => {
 
-    if(beerLoading) return
+    if(beerLoading || beerCount < 0) return
 
     setBeerLoading(true)
     axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/beer/beers/`,
