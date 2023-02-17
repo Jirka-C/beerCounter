@@ -12,7 +12,6 @@ function Modal({showModal, setShowModal, selectedUser, session, setUsersList}) {
   }
 
   const saveBeers = (beerType, decrement = false) => {
-    console.log(pending)
     if(!selectedUser || pending) return;
 
     setPending(true)
