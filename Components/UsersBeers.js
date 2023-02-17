@@ -7,7 +7,6 @@ import Pending from './Pending';
 function UsersBeers({session}) {
   const {data: users, loading, error} = useGetData(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/beer/users/${session.id}`);
   const [usersList, setUsersList] = useState([])
-  const [beerLoading, setBeerLoading] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
   
@@ -67,7 +66,7 @@ function UsersBeers({session}) {
               </div>
 
               {session.active ? 
-                <div className={`userBeers__counter${beerLoading ? ' userBeers__counter--disable' : ''}`}>
+                <div className="userBeers__counter">
                   <div className='userBeers__button' onClick={() => {setShowModal(true); setSelectedUser(user)}}>
                     <img src="/beer-large.svg" alt='beer' />
                   </div>

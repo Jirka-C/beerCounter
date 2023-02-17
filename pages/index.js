@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { createContext } from 'react'
+import React from 'react'
 import BeerCounter from '../Components/BeerCounter';
 
 function Home() {

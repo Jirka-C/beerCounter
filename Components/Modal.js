@@ -1,7 +1,9 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 
 function Modal({showModal, setShowModal, selectedUser, session, setUsersList}) {
+
+  const [pending, setPending] = useState(false);
 
   const beerType = {
     BEER_LARGE: "BEER_LARGE",
@@ -10,7 +12,10 @@ function Modal({showModal, setShowModal, selectedUser, session, setUsersList}) {
   }
 
   const saveBeers = (beerType, decrement = false) => {
-    if(!selectedUser) return;
+    console.log(pending)
+    if(!selectedUser || pending) return;
+
+    setPending(true)
 
     axios.post(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/beer/beers/`,
     JSON.stringify({
@@ -21,19 +26,21 @@ function Modal({showModal, setShowModal, selectedUser, session, setUsersList}) {
     }))
     .then(response => {
       if(response.data){
-        console.log(response.data)
         setUsersList(response.data.users)
-        setShowModal(false)
       }
     })
     .catch(error => {
       console.log(error)
     })
+    .finally(() => {
+      setShowModal(false)
+      setPending(false)
+    })
   }
 
   return (
     <div className={`modal${showModal ? ' modal--active' : ''}`}>
-      <div className='modal__inner'>
+      <div className={`modal__inner${pending ? ' modal__inner--pending' : ''}`}>
         <div className='modal__close' onClick={() => setShowModal(false)}>×</div>
 
         <div className='modal__title'>

@@ -3,7 +3,6 @@ import SessionName from '../Components/SessionName';
 import UsersBeers from '../Components/UsersBeers';
 import useGetData from '../Hooks/useGetData';
 import Pending from './Pending';
-import SessionUsers from './SessionUsers';
 
 function BeerCounter() {
   const {data: sessions, loading, error} = useGetData(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/beer/sessions`);
@@ -11,7 +10,6 @@ function BeerCounter() {
 
   useEffect(() => {
     if(sessions){
-      console.log(sessions)
       setSelectedSession(sessions.activeSession)
     }
   }, [sessions])

@@ -20,6 +20,16 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-around;
+
+    &--pending{
+      .modal__item{
+        opacity: 0.25;
+      }
+      
+      .modal__button{
+        cursor: auto;
+      }
+    }
   }
 
   &__title{
