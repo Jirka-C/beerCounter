@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React, { createContext } from 'react'
-import SessionName from '../Components/SessionName';
-import UsersList from '../Components/UsersBeers';
+import BeerCounter from '../Components/BeerCounter';
 
 function Home() {
   return (
@@ -19,8 +18,7 @@ function Home() {
         <meta property="og:description" content="" />
       </Head>
 
-      <SessionName />
-      <UsersList />
+      <BeerCounter />
     </>
   )
 }

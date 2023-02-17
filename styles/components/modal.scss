@@ -1,0 +1,90 @@
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: .8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: $transition;
+  opacity: 0;
+  visibility: hidden;
+
+  &__inner{
+    position: relative;
+    padding: 2rem;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+  }
+
+  &__title{
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__close{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    right: 0;
+    top: -40px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover{
+      background: lighten($color: $primary, $amount: 50%);
+    }
+  }
+
+  &__item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  &__button{
+    background: $primary;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: $transition;
+
+    &--small{
+      padding: 10px 10px 14px 10px;
+      line-height: 0;
+    }
+
+    img{
+      display: block;
+      height: 70px;
+      margin-bottom: 15px;
+    }
+
+    &:hover{
+      background: darken($color: $primary, $amount: 10%);
+    }
+  }
+
+  &--active{
+    opacity: 1;
+    visibility: visible;
+  }
+}
