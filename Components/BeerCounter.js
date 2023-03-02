@@ -19,7 +19,7 @@ function BeerCounter() {
       !selectedSession
       ? <Pending />
       : <>
-          <SessionName session={selectedSession} />
+          <SessionName sessions={sessions.sessions} selectedSession={selectedSession} setSelectedSession={setSelectedSession} />
           <UsersBeers session={selectedSession} />
         </>
   )
