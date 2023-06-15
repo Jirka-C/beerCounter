@@ -1,7 +1,16 @@
+import React, { createContext, useState } from 'react'
 import '../styles/style.scss'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+export const SessionContext = createContext();
+
+function BeerCounter({ Component, pageProps }) {
+  const [selectedSession, setSelectedSession] = useState(null)
+
+  return (
+    <SessionContext.Provider value={{selectedSession: selectedSession, setSelectedSession: setSelectedSession}}>
+      <Component {...pageProps} />
+    </SessionContext.Provider>
+  )
 }
 
-export default MyApp
+export default BeerCounter

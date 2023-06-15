@@ -18,7 +18,7 @@ function Users() {
     !selectedSession
     ? <Pending /> :
     <>
-      <SessionName session={selectedSession} />
+      {/* <SessionName sessions={sessions.sessions} selectedSession={selectedSession} setSelectedSession={setSelectedSession} /> */}
       <UserInput />
     </>
   )

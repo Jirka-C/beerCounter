@@ -1,0 +1,127 @@
+.main-menu{
+  &__box{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba($color: #efefef, $alpha: .8);
+    backdrop-filter: blur(2px);
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transition: $transition;
+
+    &--active{
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__panel{
+    display: flex;
+    width: 250px;
+    height: 100vh;
+    margin-left: auto;
+    padding: 1rem;
+    padding-top: 60px;
+    background: white;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  &__hamburger{
+    position: fixed;
+    display: flex;
+    top: .5rem;
+    right: 1rem;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &::before, &::after{
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 30px;
+      height: 2px;
+      background: $primary;
+      top: 18px;
+      transition: top .3s linear .3s,transform .3s linear 0s;
+    }
+
+    &::after{
+      top: 30px;
+    }
+
+    span{
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      border-top: 2px solid $primary;
+      transition: opacity 0s linear .3s;
+    }
+
+    &--close{
+      span{
+        opacity: 0;
+      }
+
+      &::before{
+        top: 24px;
+        transform: rotate(45deg);
+        transition: 0.3s top 0s linear, 0.3s transform 0.3s linear;
+      }
+
+      &::after{
+        top: 24px;
+        transform: rotate(-45deg);
+        transition: 0.3s top 0s linear, 0.3s transform 0.3s linear;
+      }
+
+    }
+  }
+
+  &__button{
+    display: flex;
+    color: white;
+    width: 100%;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1rem 2rem;
+    background: $primary;
+    transition: $transition;
+    cursor: pointer;
+
+    &:hover{
+      background: darken($color: $primary, $amount: 10%);
+    }
+  }
+
+  &__sessions{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid $primary;
+    gap: 1rem;
+    height: 80vh;
+    overflow: auto;
+  }
+
+  &__item{
+    transition: $transition;
+    cursor: pointer;
+
+    &:hover{
+      color: $primary;
+    }
+  }
+
+  &__name{
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+}

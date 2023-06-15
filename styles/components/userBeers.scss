@@ -1,5 +1,6 @@
 .userBeers{
   margin: 2rem 0;
+  padding: 0 1rem;
 
   &__row{
     display: flex;
@@ -53,6 +54,7 @@
   &__beer{
     width: 20px;
     height: 20px;
+    margin: 3px 0;
 
     img, svg{
       display: block;

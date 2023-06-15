@@ -1,12 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import useGetData from '../Hooks/useGetData';
+import React, { useContext, useEffect, useState } from 'react'
 import Modal from './Modal';
 import Pending from './Pending';
+import SessionName from './SessionName';
+import { SessionContext } from '../pages/_app';
 
-function UsersBeers({session}) {
-  const {data: users, loading, error} = useGetData(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/beer/users/${session.id}`);
-  const [usersList, setUsersList] = useState([])
+function UsersBeers() {
+
+  const sessionContext = useContext(SessionContext)
+  const {selectedSession, setSession} = sessionContext
+  const [usersList, setUsersList] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [selectedUser, setSelectedUser] = useState(null)
   
@@ -17,12 +20,20 @@ function UsersBeers({session}) {
   }
 
   useEffect(() => {
-    
-    if(users?.users.length){
-      setUsersList(users.users)
+    const source = axios.CancelToken.source();
+
+    if(selectedSession){
+      axios.get(`${process.env.NEXT_PUBLIC_API_BASE_PATH}/beer/sessions/${selectedSession.id}`, {
+        cancelToken: source.token
+      })
+        .then(res => setUsersList(res.data.users))
+        .catch(err => console.log(err))
     }
-    
-  }, [users])
+
+    return () => {
+      source.cancel();
+    }
+  },[selectedSession])
 
   const getBeerIcons = (beersCount, beerIcon = beerIcon.BEER_LARGE) => {
     
@@ -39,10 +50,12 @@ function UsersBeers({session}) {
   }
 
   return (
+    !selectedSession ? <Pending /> :
     <>
+      <SessionName selectedSession={selectedSession} />
       <div className='userBeers'>
         <div className='container'>
-          {loading ? <Pending /> : usersList.map((user) => 
+          {!usersList ? <Pending /> : usersList.map((user) => 
             <div key={user.id} className='userBeers__row'>
               <div className='userBeers__name'>
                 {user.name}
@@ -65,7 +78,7 @@ function UsersBeers({session}) {
                 </div> : null}
               </div>
 
-              {session.active ? 
+              {selectedSession.active ? 
                 <div className="userBeers__counter">
                   <div className='userBeers__button' onClick={() => {setShowModal(true); setSelectedUser(user)}}>
                     <img src="/beer-large.svg" alt='beer' />
@@ -76,7 +89,7 @@ function UsersBeers({session}) {
         </div>
       </div>
 
-      <Modal showModal={showModal} setShowModal={setShowModal} selectedUser={selectedUser} session={session} setUsersList={setUsersList} />
+      <Modal showModal={showModal} setShowModal={setShowModal} selectedUser={selectedUser} session={selectedSession} setUsersList={setUsersList} />
     </>
   )
 }

@@ -1,0 +1,76 @@
+.ranking{
+  margin: 2rem auto;
+
+  &__name{
+    position: relative;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+    color: $primary;
+    margin: 2rem 0;
+  }
+
+  &__filter{
+    display: flex;
+    justify-content: center;
+    margin: 2rem auto;
+    
+    &-box{
+      display: flex;
+      border: 1px solid $primary;
+    }
+    
+    &-item{
+      padding: .5rem 1rem;
+      cursor: pointer;
+      transition: $transition;
+
+      &:nth-child(2){
+        border: 1px solid $primary;
+        border-top: none;
+        border-bottom: none;
+      }
+
+      &--active{
+        background: $primary;
+        color: white;
+      }
+    }
+  }
+
+  &__table{
+    width: 100%;
+
+    th, td{
+      text-align: center;
+      padding: .3rem;
+
+      &:nth-child(1){
+        width: 40px;
+      }
+      
+      &:nth-child(2){
+        text-align: left;
+      }
+    }
+
+    thead{
+      tr{
+        background: $primary;
+
+        th{
+          color: white;
+          font-weight: 500;
+        }
+      }
+    }
+
+    tbody{
+      tr{
+        &:nth-child(2n){
+          background: rgba($color: $primary, $alpha: .2);
+        }
+      }
+    }
+  }
+}
